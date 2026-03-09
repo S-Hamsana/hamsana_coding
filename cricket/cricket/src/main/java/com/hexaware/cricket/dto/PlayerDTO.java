@@ -1,30 +1,17 @@
-package com.hexaware.cricket.entity;
+package com.hexaware.cricket.dto;
 
-import jakarta.persistence.*;
+public class PlayerDTO {
 
-@Entity
-@Table(name="players")
-public class Player {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long playerId;
-
     private String playerName;
-
     private int jerseyNumber;
-
     private String role;
-
     private int totalMatches;
-
     private String teamName;
-
     private String country;
-
     private String description;
 
-    public Player() {
+    public PlayerDTO() {
     }
 
     public Long getPlayerId() {

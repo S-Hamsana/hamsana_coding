@@ -3,52 +3,42 @@ package com.hexaware.cricket.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.hexaware.cricket.service.IPlayerService;
-import com.hexaware.cricketi.dto.PlayerDTO;
-
+import com.hexaware.cricket.dto.PlayerDTO;
+import com.hexaware.cricket.service.PlayerService;
 
 @RestController
 @RequestMapping("/api/players")
 public class PlayerController {
 
     @Autowired
-    private IPlayerService service;
-    
-    
-    @PostMapping("/add")
-    public PlayerDTO createPlayer(@RequestBody PlayerDTO dto){
-        return service.createPlayer(dto);
-    }
+    PlayerService service;
 
-
-    @GetMapping("/getall")
-    public List<PlayerDTO> getPlayers(){
+    @GetMapping
+    public List<PlayerDTO> getAllPlayers(){
         return service.getAllPlayers();
     }
 
-   
-    @GetMapping("/get/{playerId}")
-    public PlayerDTO getPlayer(@PathVariable int playerId){
-        return service.getPlayerById(playerId);
+    @GetMapping("/{id}")
+    public PlayerDTO getPlayerById(@PathVariable Long id){
+        return service.getPlayerById(id);
     }
 
-    @PutMapping("/update/{playerId}")
-    public PlayerDTO updatePlayer(@PathVariable int playerId, @RequestBody PlayerDTO dto){
-        return service.updatePlayer(playerId, dto);
+    @PostMapping
+    public PlayerDTO addPlayer(@RequestBody PlayerDTO dto){
+        return service.addPlayer(dto);
     }
 
-    @DeleteMapping("/delete/{playerId}")
-    public String deletePlayer(@PathVariable int playerId){
-        service.deletePlayer(playerId);
+    @PutMapping("/{id}")
+    public PlayerDTO updatePlayer(@PathVariable Long id,@RequestBody PlayerDTO dto){
+        return service.updatePlayer(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deletePlayer(@PathVariable Long id){
+        service.deletePlayer(id);
         return "Player deleted successfully";
     }
+
 }

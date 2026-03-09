@@ -1,10 +1,10 @@
-package com.hexaware.cricket.api;
+package com.hexaware.cms;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CricketApiChallengeApplicationTests {
+class CricketTeamApiApplicationTests {
 
 	@Test
 	void contextLoads() {
